@@ -1,0 +1,3 @@
+#define NAV_UP      CH_CURS_LEFT
+#define NAV_DOWN    CH_CURS_RIGHT
+#define NAV_SELECT  CH_ENTER
