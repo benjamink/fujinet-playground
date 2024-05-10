@@ -2,3 +2,5 @@
 **/dist/
 **/obj/
 **/build/
+**/_libs/
+*.prg
