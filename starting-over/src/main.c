@@ -1,38 +1,37 @@
 #include <stdio.h>
-#include "globals.h"
-
-int cmdShowColor()
-{
-  printf("The color is orange\n");
-  return 0;
-}
-
-int cmdShowName()
-{
-  printf("The name is John\n");
-  return 0;
-}
-
-void handleSelection(MenuSelection selectedItem)
-{
-  switch (selectedItem)
-  {
-  case SHOW_COLOR:
-    cmdShowColor();
-    break;
-  case SHOW_NAME:
-    cmdShowName();
-    break;
-  default:
-    printf("Invalid selection!\n");
-    break;
-  }
-}
+#include <stdlib.h>
+#include "inc/globals.h"
+#include "menu.h"
+#include "commands.h"
 
 int main()
 {
-  menuSelection = SHOW_COLOR;
+  MenuOption choice;
 
-  handleSelection(SHOW_COLOR);
-  handleSelection(SHOW_NAME);
+  do
+  {
+    choice = displayMenu();
+
+    switch (choice)
+    {
+    case 0:
+      choice = SHOW_NAME;
+      cmdShowNames();
+      break;
+    case 1:
+      choice = SHOW_COLOR;
+      cmdShowColors();
+      break;
+    case 2:
+      choice = QUIT;
+      cmdQuit();
+    default:
+      choice = INVALID_CHOICE;
+      printf("Invalid choice. Please try again.\n");
+      delay(1000);
+      break;
+    }
+  } while (choice != QUIT);
+
+  return 0;
 }

@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include "inc/globals.h"
+#include "menu.h"
+
+void displayMenu(void)
+{
+  printf("Menu:\n");
+  printf("1. Show Name\n");
+  printf("2. Show Color\n");
+  printf("Q. Quit\n");
+  printf("Enter your choice: ");
+}
+
+MenuOption getUserChoice(void)
+{
+  char input[2];
+  scanf("%1s", input);
+
+  switch (input[0])
+  {
+  case '1':
+    return SHOW_NAME;
+  case '2':
+    return SHOW_COLOR;
+  case 'Q':
+  case 'q':
+    return QUIT;
+  default:
+    return INVALID_CHOICE;
+  }
+}

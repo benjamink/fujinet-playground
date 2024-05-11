@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "menu.h"
+#include "./menu.c"
 #include "inc/globals.h"
 
 int cmdColor()
@@ -34,31 +34,8 @@ int cmdMovies()
 
 int main()
 {
-  menuSelection = displayMenu();
 
-  while (1)
-  {
-    switch (menuSelection)
-    {
-    case COLORS:
-      cmdColor();
-      break;
-    case NAMES:
-      cmdNames();
-      break;
-    case NUMBERS:
-      cmdNumbers();
-      break;
-    case SONGS:
-      cmdSongs();
-      break;
-    case MOVIES:
-      cmdMovies();
-      break;
-    case MENU_ITEMS:
-      break;
-    }
-  }
+  int x = displayMenu();
 
   return 0;
 }

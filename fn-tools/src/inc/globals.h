@@ -1,3 +1,6 @@
+#ifndef GLOBALS_H
+#define GLOBALS_H
+
 #define NAV_UP CH_CURS_LEFT
 #define NAV_DOWN CH_CURS_RIGHT
 #define NAV_SELECT CH_ENTER
@@ -10,7 +13,7 @@
  * @enum ITEM4 item 4
  * @enum ITEM5 item 5
  */
-typedef enum _menuItems
+typedef enum _menuSelection
 {
   COLORS,
   NAMES,
@@ -21,3 +24,5 @@ typedef enum _menuItems
 } MenuItems;
 
 extern MenuItems menuSelection;
+
+#endif // GLOBALS_H

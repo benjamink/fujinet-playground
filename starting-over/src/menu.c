@@ -2,33 +2,22 @@
 #include <conio.h>
 #include <string.h>
 #include "inc/globals.h"
-
-#ifdef __APPLE2ENH__
-#include "inc/apple2enh.h"
-#elif defined(__APPLE2__)
-#include "inc/apple2.h"
-#elif defined(__ATARI__)
-#include "inc/atari.h"
-#elif defined(__C64__)
-#include "inc/c64.h"
-#include "menu.h"
-#endif
+#include "commands.h"
 
 const char *menuline[20];
 
-const char *menuItems[MENU_ITEMS] = {
-    "Colors",
+const char *menuItems[3] = {
     "Names",
-    "Numbers",
-    "Songs",
-    "Movies"};
+    "Colors",
+    "Quit"};
 
 void draw_menu(int x, int y, int current_item)
 {
   int i;
 
-  for (i = 0; i < MENU_ITEMS; ++i)
+  for (i = 0; i < sizeof(menuItems); ++i)
   {
+    memset(menuline, ' ', 20);
     if (i == current_item)
     {
       revers(1);
@@ -43,23 +32,11 @@ void draw_menu(int x, int y, int current_item)
   }
 }
 
-void delay(int delay)
-{
-  int i;
-  // Simple delay
-  for (i = 0; i < delay; ++i)
-  {
-    ;
-  }
-}
-
 int displayMenu()
 {
   int current_item = 0;
-  int startpad = 0;
   int selection_made = 0;
-  char key;
-  memset(menuline, ' ', 20);
+  // memset(menuline, ' ', 20);
 
   clrscr();
 
@@ -71,6 +48,7 @@ int displayMenu()
   {
     if (kbhit())
     {
+      char key;
       key = cgetc();
 
       if (key == NAV_UP)
@@ -82,7 +60,7 @@ int displayMenu()
       }
       else if (key == NAV_DOWN)
       {
-        if (current_item < MENU_ITEMS - 1)
+        if (current_item < sizeof(menuItems) - 1)
         {
           current_item++;
         }
@@ -90,11 +68,13 @@ int displayMenu()
       else if (key == NAV_SELECT)
       {
         clrscr();
+        /*
         revers(0);
         textcolor(1);
         cputsxy(15, 8, "YOU PICKED:");
         revers(1);
         cputsxy((20 - (strlen(menuItems[current_item]) / 2)), 10, menuItems[current_item]);
+        */
         break;
       }
     }
@@ -102,6 +82,6 @@ int displayMenu()
     draw_menu(10, 10, current_item);
   }
 
-  delay(10000);
+  delay(1000);
   return current_item;
 }
