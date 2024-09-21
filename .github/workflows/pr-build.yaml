@@ -15,6 +15,7 @@ jobs:
       - name: Create test file
         run: |
           echo "This is a test file." > test_file.txt
+          echo "This is another file." > test_file2.txt
 
       - uses: actions/upload-artifact@v4 # upload the results
         with: 
