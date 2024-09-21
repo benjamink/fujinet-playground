@@ -15,7 +15,7 @@ jobs:
           echo "This is a test file." > test_file.txt
 
       - name: Upload test file as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: test-file
           path: test_file.txt
