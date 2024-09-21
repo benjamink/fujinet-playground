@@ -1,0 +1,21 @@
+name: Test File Upload
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Create test file
+        run: |
+          echo "This is a test file." > test_file.txt
+
+      - name: Upload test file as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-file
+          path: test_file.txt
